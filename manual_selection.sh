@@ -10,7 +10,7 @@ video_path="$HOME/scratch/videos/$(basename "$image_folder")"
 video=${video_path}.mp4
 mkdir ${dir}
 mkdir -p video_path
-cd "$(dirname "$(realpath "$0")")"
+
 module load anaconda
 source /gpfs/runtime/opt/anaconda/2020.02/bin/activate
 #Create environments if they don't exist

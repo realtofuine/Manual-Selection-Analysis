@@ -11,7 +11,7 @@
 # module load anaconda  # or whichever is available and has your env
 
 # Initialize shell support for conda (needed for conda activate)
-cd "$(dirname "$(realpath "$0")")"
+
 source /gpfs/runtime/opt/anaconda/2020.02/bin/activate
 conda activate manualenv
 python analyzeData.py --path "$1"
