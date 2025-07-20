@@ -3,7 +3,7 @@
 #SBATCH -p batch
 #SBATCH --mem=16G
 #SBATCH -J generateVids
-#SBATCH -o /output/generateVids-%j.out
+#SBATCH -o output/generateVids-%j.out
 #SBATCH -t 2:00:00
 
 cd "$(dirname "$(realpath "$0")")"

@@ -4,7 +4,7 @@
 #SBATCH -p gpu --gres=gpu:1
 #SBATCH --mem 32G
 #SBATCH -J deeplabcutanalyze
-#SBATCH -o /output/deeplabcutanalyze-%j.out
+#SBATCH -o output/deeplabcutanalyze-%j.out
 #SBATCH -t 2:00:00
 
 cd "$(dirname "$(realpath "$0")")"

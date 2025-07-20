@@ -4,7 +4,7 @@
 #SBATCH -p batch
 #SBATCH --mem 16G
 #SBATCH -J analyzeData
-#SBATCH -o /users/rrai8/zebrafish_analysis/Manual-Selection/output/analyzeData-%j.out
+#SBATCH -o output/analyzeData-%j.out
 #SBATCH -t 2:00:00
 
 # Load Anaconda first (BEFORE trying to activate env)

@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -J ffmpeg_video
-#SBATCH -o /output/makevideo_output-%j.log
+#SBATCH -o output/makevideo_output-%j.log
 #SBATCH -n 4
 #SBATCH -p batch
 #SBATCH --mem 16G
