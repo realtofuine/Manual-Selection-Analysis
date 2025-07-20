@@ -1,0 +1,20 @@
+dataset: /Users/rishi/Library/Application Support/Mountain 
+  Duck/Volumes.noindex/transfer.ccv.brown.edu – 
+  SFTP.localized/zebrafish_analysis/Manual-Selection/singlelarvae_imaging-rishi-2025-06-13
+dataset_type: multi-animal-imgaug
+num_joints: 5
+all_joints:
+- - 0
+- - 1
+- - 2
+- - 3
+- - 4
+all_joints_names:
+- left_eye
+- right_eye
+- middle
+- tail
+- well_center
+net_type: resnet_50
+global_scale: 1
+scoremap_dir: test
