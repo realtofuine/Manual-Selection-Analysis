@@ -13,6 +13,7 @@ mkdir -p video_path
 
 module load anaconda
 source /gpfs/runtime/opt/anaconda/2020.02/bin/activate
+cd Manual-Selection-Analysis
 #Create environments if they don't exist
 if conda info --envs | grep -qE "^DEEPLABCUT[[:space:]]"; then
     echo "✅ DEEPLABCUT environment exists"
