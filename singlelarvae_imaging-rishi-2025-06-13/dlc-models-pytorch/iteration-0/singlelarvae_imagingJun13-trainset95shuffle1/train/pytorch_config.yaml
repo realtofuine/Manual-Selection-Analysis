@@ -21,12 +21,9 @@ data:
     normalize_images: true
 device: auto
 metadata:
-  project_path: /Users/rishi/Library/Application Support/Mountain 
-    Duck/Volumes.noindex/transfer.ccv.brown.edu – 
-    SFTP.localized/zebrafish_analysis/Manual-Selection/singlelarvae_imaging-rishi-2025-06-13
-  pose_config_path: /Users/rishi/Library/Application Support/Mountain 
-    Duck/Volumes.noindex/transfer.ccv.brown.edu – 
-    SFTP.localized/zebrafish_analysis/Manual-Selection/singlelarvae_imaging-rishi-2025-06-13/dlc-models-pytorch/iteration-0/singlelarvae_imagingJun13-trainset95shuffle1/train/pytorch_config.yaml
+  project_path: /Users/rishi/Desktop/singlelarvae_imaging-rishi-2025-06-13
+  pose_config_path: 
+    /Users/rishi/Desktop/singlelarvae_imaging-rishi-2025-06-13/dlc-models-pytorch/iteration-0/singlelarvae_imagingJun13-trainset95shuffle1/train/pytorch_config.yaml
   bodyparts:
   - left_eye
   - right_eye
@@ -34,21 +31,17 @@ metadata:
   - tail
   - well_center
 
+# Fraction of video to start/stop when extracting frames for labeling/refinement
 
 # Fraction of video to start/stop when extracting frames for labeling/refinement
 
+# Fraction of video to start/stop when extracting frames for labeling/refinement
 
 # Fraction of video to start/stop when extracting frames for labeling/refinement
 
-
 # Fraction of video to start/stop when extracting frames for labeling/refinement
 
-
 # Fraction of video to start/stop when extracting frames for labeling/refinement
-
-
-# Fraction of video to start/stop when extracting frames for labeling/refinement
-
 
 # Fraction of video to start/stop when extracting frames for labeling/refinement
   unique_bodyparts: []

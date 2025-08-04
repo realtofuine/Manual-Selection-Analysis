@@ -9,4 +9,3 @@ eval "$(conda shell.bash hook)"
 # Now activate your env
 conda activate manualenv
 python analyzeData.py --path "$1"
-print("Data analysis completed successfully.")

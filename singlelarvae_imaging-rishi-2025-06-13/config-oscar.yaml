@@ -8,7 +8,7 @@ identity:
 
 # Project path (change when moving around)
 project_path: 
-  ./singlelarvae_imaging-rishi-2025-06-13
+  /Users/rishi/Downloads/Manual-Selection-Analysis/singlelarvae_imaging-rishi-2025-06-13
 
 
 # Default DeepLabCut engine to use for shuffle creation (either pytorch or tensorflow)
@@ -17,26 +17,27 @@ engine: pytorch
 
 # Annotation data set configuration (and individual video cropping parameters)
 video_sets:
-  /Users/rishi/Downloads/training/training.mov:
-    crop: 0, 256, 0, 256
-  /oscar/home/rrai8/singlelarvae_imaging-rishi-2025-06-13/videos/P1_1.mp4:
-    crop: 0, 216, 0, 214
+  ./singlelarvae_imaging-rishi-2025-06-13/labeled-data/train-edge: {}
+  ./singlelarvae_imaging-rishi-2025-06-13/labeled-data/training: {}
+  ./singlelarvae_imaging-rishi-2025-06-13/labeled-data/blank: {}
 bodyparts:
 - left_eye
 - right_eye
 - middle
 - tail
-# - well_center
-
-
-# Fraction of video to start/stop when extracting frames for labeling/refinement
-
+- well_center
 
 # Fraction of video to start/stop when extracting frames for labeling/refinement
 
+# Fraction of video to start/stop when extracting frames for labeling/refinement
 
 # Fraction of video to start/stop when extracting frames for labeling/refinement
 
+# Fraction of video to start/stop when extracting frames for labeling/refinement
+
+# Fraction of video to start/stop when extracting frames for labeling/refinement
+
+# Fraction of video to start/stop when extracting frames for labeling/refinement
 
 # Fraction of video to start/stop when extracting frames for labeling/refinement
 

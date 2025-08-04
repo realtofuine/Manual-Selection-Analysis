@@ -26,7 +26,7 @@ def build_filter_chain(x, y, w, h, roi_type):
         f"[0]crop={w}:{h}:{x}:{y},format=rgba,"
         f"geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)':a='if({full_expr}\\,255\\,0)'[masked];"
         f"color=black@1.0:s={w}x{h}:d=10[bg];"
-        f"[bg][masked]overlay=format=rgb"
+        f"[bg][masked]overlay=shortest=1:format=rgb"
     )
 
     return filter_complex, True
@@ -49,7 +49,6 @@ def run_ffmpeg_crop(video_path, crop, roi_type, out_path, threads=4):
         cmd += ["-vf", vf]
 
     cmd += [
-        "-r", "30",                        # enforce constant framerate
         "-movflags", "+faststart",        # optimize for playback
         "-preset", "ultrafast",            # speed up encoding
         "-c:v", "libx264",                # ensure you're using x264

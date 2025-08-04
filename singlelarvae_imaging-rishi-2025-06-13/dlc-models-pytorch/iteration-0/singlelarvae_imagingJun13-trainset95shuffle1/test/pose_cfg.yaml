@@ -1,6 +1,4 @@
-dataset: /Users/rishi/Library/Application Support/Mountain 
-  Duck/Volumes.noindex/transfer.ccv.brown.edu – 
-  SFTP.localized/zebrafish_analysis/Manual-Selection/singlelarvae_imaging-rishi-2025-06-13
+dataset: /Users/rishi/Desktop/singlelarvae_imaging-rishi-2025-06-13
 dataset_type: multi-animal-imgaug
 num_joints: 5
 all_joints:

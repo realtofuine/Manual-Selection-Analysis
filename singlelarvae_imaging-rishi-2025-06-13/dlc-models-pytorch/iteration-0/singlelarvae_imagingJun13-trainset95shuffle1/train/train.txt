@@ -1738,3 +1738,873 @@ Starting pose model training...
 2025-06-25 08:14:37   metrics/test.rmse_pcutoff:   2.14
 2025-06-25 08:14:37   metrics/test.mAP:           74.39
 2025-06-25 08:14:37   metrics/test.mAR:           83.33
+2025-07-28 21:41:50 Training with configuration:
+2025-07-28 21:41:50 data:
+2025-07-28 21:41:50   bbox_margin: 20
+2025-07-28 21:41:50   colormode: RGB
+2025-07-28 21:41:50   inference:
+2025-07-28 21:41:50     normalize_images: True
+2025-07-28 21:41:50   train:
+2025-07-28 21:41:50     affine:
+2025-07-28 21:41:50       p: 0.5
+2025-07-28 21:41:50       rotation: 30
+2025-07-28 21:41:50       scaling: [0.5, 1.25]
+2025-07-28 21:41:50       translation: 0
+2025-07-28 21:41:50     crop_sampling:
+2025-07-28 21:41:50       width: 448
+2025-07-28 21:41:50       height: 448
+2025-07-28 21:41:50       max_shift: 0.1
+2025-07-28 21:41:50       method: hybrid
+2025-07-28 21:41:50     gaussian_noise: 12.75
+2025-07-28 21:41:50     motion_blur: True
+2025-07-28 21:41:50     normalize_images: True
+2025-07-28 21:41:50 device: auto
+2025-07-28 21:41:50 metadata:
+2025-07-28 21:41:50   project_path: /Users/rishi/Desktop/singlelarvae_imaging-rishi-2025-06-13
+2025-07-28 21:41:50   pose_config_path: /Users/rishi/Desktop/singlelarvae_imaging-rishi-2025-06-13/dlc-models-pytorch/iteration-0/singlelarvae_imagingJun13-trainset95shuffle1/train/pytorch_config.yaml
+2025-07-28 21:41:50   bodyparts: ['left_eye', 'right_eye', 'middle', 'tail', 'well_center']
+2025-07-28 21:41:50   unique_bodyparts: []
+2025-07-28 21:41:50   individuals: ['animal']
+2025-07-28 21:41:50   with_identity: None
+2025-07-28 21:41:50 method: bu
+2025-07-28 21:41:50 model:
+2025-07-28 21:41:50   backbone:
+2025-07-28 21:41:50     type: ResNet
+2025-07-28 21:41:50     model_name: resnet50_gn
+2025-07-28 21:41:50     output_stride: 16
+2025-07-28 21:41:50     freeze_bn_stats: False
+2025-07-28 21:41:50     freeze_bn_weights: False
+2025-07-28 21:41:50   backbone_output_channels: 2048
+2025-07-28 21:41:50   heads:
+2025-07-28 21:41:50     bodypart:
+2025-07-28 21:41:50       type: HeatmapHead
+2025-07-28 21:41:50       weight_init: normal
+2025-07-28 21:41:50       predictor:
+2025-07-28 21:41:50         type: HeatmapPredictor
+2025-07-28 21:41:50         apply_sigmoid: False
+2025-07-28 21:41:50         clip_scores: True
+2025-07-28 21:41:50         location_refinement: True
+2025-07-28 21:41:50         locref_std: 7.2801
+2025-07-28 21:41:50       target_generator:
+2025-07-28 21:41:50         type: HeatmapGaussianGenerator
+2025-07-28 21:41:50         num_heatmaps: 5
+2025-07-28 21:41:50         pos_dist_thresh: 17
+2025-07-28 21:41:50         heatmap_mode: KEYPOINT
+2025-07-28 21:41:50         gradient_masking: False
+2025-07-28 21:41:50         generate_locref: True
+2025-07-28 21:41:50         locref_std: 7.2801
+2025-07-28 21:41:50       criterion:
+2025-07-28 21:41:50         heatmap:
+2025-07-28 21:41:50           type: WeightedMSECriterion
+2025-07-28 21:41:50           weight: 1.0
+2025-07-28 21:41:50         locref:
+2025-07-28 21:41:50           type: WeightedHuberCriterion
+2025-07-28 21:41:50           weight: 0.05
+2025-07-28 21:41:50       heatmap_config:
+2025-07-28 21:41:50         channels: [2048, 5]
+2025-07-28 21:41:50         kernel_size: [3]
+2025-07-28 21:41:50         strides: [2]
+2025-07-28 21:41:50       locref_config:
+2025-07-28 21:41:50         channels: [2048, 10]
+2025-07-28 21:41:50         kernel_size: [3]
+2025-07-28 21:41:50         strides: [2]
+2025-07-28 21:41:50 net_type: resnet_50
+2025-07-28 21:41:50 runner:
+2025-07-28 21:41:50   type: PoseTrainingRunner
+2025-07-28 21:41:50   gpus: None
+2025-07-28 21:41:50   key_metric: test.mAP
+2025-07-28 21:41:50   key_metric_asc: True
+2025-07-28 21:41:50   eval_interval: 10
+2025-07-28 21:41:50   optimizer:
+2025-07-28 21:41:50     type: AdamW
+2025-07-28 21:41:50     params:
+2025-07-28 21:41:50       lr: 0.0005
+2025-07-28 21:41:50   scheduler:
+2025-07-28 21:41:50     type: LRListScheduler
+2025-07-28 21:41:50     params:
+2025-07-28 21:41:50       lr_list: [[0.0001], [1e-05]]
+2025-07-28 21:41:50       milestones: [90, 120]
+2025-07-28 21:41:50   snapshots:
+2025-07-28 21:41:50     max_snapshots: 5
+2025-07-28 21:41:50     save_epochs: 25
+2025-07-28 21:41:50     save_optimizer_state: False
+2025-07-28 21:41:50 train_settings:
+2025-07-28 21:41:50   batch_size: 8
+2025-07-28 21:41:50   dataloader_workers: 0
+2025-07-28 21:41:50   dataloader_pin_memory: False
+2025-07-28 21:41:50   display_iters: 500
+2025-07-28 21:41:50   epochs: 200
+2025-07-28 21:41:50   seed: 42
+2025-07-28 21:41:50 Loading pretrained weights from Hugging Face hub (timm/resnet50_gn.a1h_in1k)
+2025-07-28 21:41:50 [timm/resnet50_gn.a1h_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-07-28 21:41:52 Data Transforms:
+2025-07-28 21:41:52   Training:   Compose([
+  Affine(always_apply=False, p=0.5, interpolation=1, mask_interpolation=0, cval=0, mode=0, scale={'x': (0.5, 1.25), 'y': (0.5, 1.25)}, translate_percent=None, translate_px={'x': (0, 0), 'y': (0, 0)}, rotate=(-30, 30), fit_output=False, shear={'x': (0.0, 0.0), 'y': (0.0, 0.0)}, cval_mask=0, keep_ratio=True, rotate_method='largest_box'),
+  PadIfNeeded(always_apply=True, p=1.0, min_height=448, min_width=448, pad_height_divisor=None, pad_width_divisor=None, position=PositionType.CENTER, border_mode=0, value=None, mask_value=None),
+  KeypointAwareCrop(always_apply=True, p=1.0, width=448, height=448, max_shift=0.1, crop_sampling='hybrid'),
+  MotionBlur(always_apply=False, p=0.5, blur_limit=(3, 7), allow_shifted=True),
+  GaussNoise(always_apply=False, p=0.5, var_limit=(0, 162.5625), per_channel=True, mean=0),
+  Normalize(always_apply=False, p=1.0, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], max_pixel_value=255.0),
+], p=1.0, bbox_params={'format': 'coco', 'label_fields': ['bbox_labels'], 'min_area': 0.0, 'min_visibility': 0.0, 'min_width': 0.0, 'min_height': 0.0, 'check_each_transform': True}, keypoint_params={'format': 'xy', 'label_fields': ['class_labels'], 'remove_invisible': False, 'angle_in_degrees': True, 'check_each_transform': True}, additional_targets={}, is_check_shapes=True)
+2025-07-28 21:41:52   Validation: Compose([
+  Normalize(always_apply=False, p=1.0, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], max_pixel_value=255.0),
+], p=1.0, bbox_params={'format': 'coco', 'label_fields': ['bbox_labels'], 'min_area': 0.0, 'min_visibility': 0.0, 'min_width': 0.0, 'min_height': 0.0, 'check_each_transform': True}, keypoint_params={'format': 'xy', 'label_fields': ['class_labels'], 'remove_invisible': False, 'angle_in_degrees': True, 'check_each_transform': True}, additional_targets={}, is_check_shapes=True)
+2025-07-28 21:41:53 Using 193 images and 11 for testing
+2025-07-28 21:41:53 
+Starting pose model training...
+--------------------------------------------------
+2025-07-28 21:42:05 Epoch 1/200 (lr=0.0005), train loss 0.01480
+2025-07-28 21:42:15 Epoch 2/200 (lr=0.0005), train loss 0.01225
+2025-07-28 21:42:25 Epoch 3/200 (lr=0.0005), train loss 0.01053
+2025-07-28 21:42:35 Epoch 4/200 (lr=0.0005), train loss 0.01035
+2025-07-28 21:42:45 Epoch 5/200 (lr=0.0005), train loss 0.00955
+2025-07-28 21:42:54 Epoch 6/200 (lr=0.0005), train loss 0.00857
+2025-07-28 21:43:04 Epoch 7/200 (lr=0.0005), train loss 0.00792
+2025-07-28 21:43:14 Epoch 8/200 (lr=0.0005), train loss 0.00804
+2025-07-28 21:43:24 Epoch 9/200 (lr=0.0005), train loss 0.00752
+2025-07-28 21:43:34 Training for epoch 10 done, starting evaluation
+2025-07-28 21:43:35 Epoch 10/200 (lr=0.0005), train loss 0.00671, valid loss 0.00848
+2025-07-28 21:43:35 Model performance:
+2025-07-28 21:43:35   metrics/test.rmse:         113.75
+2025-07-28 21:43:35   metrics/test.rmse_pcutoff:   3.63
+2025-07-28 21:43:35   metrics/test.mAP:           23.86
+2025-07-28 21:43:35   metrics/test.mAR:           30.00
+2025-07-28 21:43:44 Epoch 11/200 (lr=0.0005), train loss 0.00642
+2025-07-28 21:43:54 Epoch 12/200 (lr=0.0005), train loss 0.00674
+2025-07-28 21:44:04 Epoch 13/200 (lr=0.0005), train loss 0.00611
+2025-07-28 21:44:14 Epoch 14/200 (lr=0.0005), train loss 0.00555
+2025-07-28 21:44:24 Epoch 15/200 (lr=0.0005), train loss 0.00559
+2025-07-28 21:44:34 Epoch 16/200 (lr=0.0005), train loss 0.00488
+2025-07-28 21:44:44 Epoch 17/200 (lr=0.0005), train loss 0.00479
+2025-07-28 21:44:53 Epoch 18/200 (lr=0.0005), train loss 0.00439
+2025-07-28 21:45:03 Epoch 19/200 (lr=0.0005), train loss 0.00450
+2025-07-28 21:45:13 Training for epoch 20 done, starting evaluation
+2025-07-28 21:45:14 Epoch 20/200 (lr=0.0005), train loss 0.00476, valid loss 0.00666
+2025-07-28 21:45:14 Model performance:
+2025-07-28 21:45:14   metrics/test.rmse:         125.44
+2025-07-28 21:45:14   metrics/test.rmse_pcutoff:  33.63
+2025-07-28 21:45:14   metrics/test.mAP:           35.76
+2025-07-28 21:45:14   metrics/test.mAR:           38.00
+2025-07-28 21:45:24 Epoch 21/200 (lr=0.0005), train loss 0.00443
+2025-07-28 21:45:33 Epoch 22/200 (lr=0.0005), train loss 0.00456
+2025-07-28 21:45:43 Epoch 23/200 (lr=0.0005), train loss 0.00465
+2025-07-28 21:45:53 Epoch 24/200 (lr=0.0005), train loss 0.00401
+2025-07-28 21:46:03 Epoch 25/200 (lr=0.0005), train loss 0.00426
+2025-07-28 21:46:13 Epoch 26/200 (lr=0.0005), train loss 0.00486
+2025-07-28 21:46:23 Epoch 27/200 (lr=0.0005), train loss 0.00419
+2025-07-28 21:46:32 Epoch 28/200 (lr=0.0005), train loss 0.00415
+2025-07-28 21:46:42 Epoch 29/200 (lr=0.0005), train loss 0.00408
+2025-07-28 21:46:51 Training for epoch 30 done, starting evaluation
+2025-07-28 21:46:52 Epoch 30/200 (lr=0.0005), train loss 0.00424, valid loss 0.00717
+2025-07-28 21:46:52 Model performance:
+2025-07-28 21:46:52   metrics/test.rmse:          93.68
+2025-07-28 21:46:52   metrics/test.rmse_pcutoff:   4.53
+2025-07-28 21:46:52   metrics/test.mAP:           43.54
+2025-07-28 21:46:52   metrics/test.mAR:           48.00
+2025-07-28 21:47:02 Epoch 31/200 (lr=0.0005), train loss 0.00389
+2025-07-28 21:47:12 Epoch 32/200 (lr=0.0005), train loss 0.00404
+2025-07-28 21:47:21 Epoch 33/200 (lr=0.0005), train loss 0.00397
+2025-07-28 21:47:31 Epoch 34/200 (lr=0.0005), train loss 0.00389
+2025-07-28 21:47:41 Epoch 35/200 (lr=0.0005), train loss 0.00375
+2025-07-28 21:47:51 Epoch 36/200 (lr=0.0005), train loss 0.00372
+2025-07-28 21:48:01 Epoch 37/200 (lr=0.0005), train loss 0.00345
+2025-07-28 21:48:11 Epoch 38/200 (lr=0.0005), train loss 0.00427
+2025-07-28 21:48:21 Epoch 39/200 (lr=0.0005), train loss 0.00372
+2025-07-28 21:48:30 Training for epoch 40 done, starting evaluation
+2025-07-28 21:48:31 Epoch 40/200 (lr=0.0005), train loss 0.00341, valid loss 0.00619
+2025-07-28 21:48:31 Model performance:
+2025-07-28 21:48:31   metrics/test.rmse:          72.02
+2025-07-28 21:48:31   metrics/test.rmse_pcutoff:   2.66
+2025-07-28 21:48:31   metrics/test.mAP:           60.00
+2025-07-28 21:48:31   metrics/test.mAR:           60.00
+2025-07-28 21:48:41 Epoch 41/200 (lr=0.0005), train loss 0.00373
+2025-07-28 21:48:51 Epoch 42/200 (lr=0.0005), train loss 0.00357
+2025-07-28 21:49:00 Epoch 43/200 (lr=0.0005), train loss 0.00334
+2025-07-28 21:49:10 Epoch 44/200 (lr=0.0005), train loss 0.00374
+2025-07-28 21:49:20 Epoch 45/200 (lr=0.0005), train loss 0.00354
+2025-07-28 21:49:30 Epoch 46/200 (lr=0.0005), train loss 0.00419
+2025-07-28 21:49:40 Epoch 47/200 (lr=0.0005), train loss 0.00370
+2025-07-28 21:49:49 Epoch 48/200 (lr=0.0005), train loss 0.00332
+2025-07-28 21:49:59 Epoch 49/200 (lr=0.0005), train loss 0.00339
+2025-07-28 21:50:09 Training for epoch 50 done, starting evaluation
+2025-07-28 21:50:10 Epoch 50/200 (lr=0.0005), train loss 0.00336, valid loss 0.00637
+2025-07-28 21:50:10 Model performance:
+2025-07-28 21:50:10   metrics/test.rmse:          60.31
+2025-07-28 21:50:10   metrics/test.rmse_pcutoff:   4.15
+2025-07-28 21:50:10   metrics/test.mAP:           58.32
+2025-07-28 21:50:10   metrics/test.mAR:           59.00
+2025-07-28 21:50:20 Epoch 51/200 (lr=0.0005), train loss 0.00384
+2025-07-28 21:50:29 Epoch 52/200 (lr=0.0005), train loss 0.00420
+2025-07-28 21:50:39 Epoch 53/200 (lr=0.0005), train loss 0.00384
+2025-07-28 21:50:49 Epoch 54/200 (lr=0.0005), train loss 0.00444
+2025-07-28 21:50:59 Epoch 55/200 (lr=0.0005), train loss 0.00387
+2025-07-28 21:51:09 Epoch 56/200 (lr=0.0005), train loss 0.00380
+2025-07-28 21:51:18 Epoch 57/200 (lr=0.0005), train loss 0.00441
+2025-07-28 21:51:28 Epoch 58/200 (lr=0.0005), train loss 0.00407
+2025-07-28 21:51:38 Epoch 59/200 (lr=0.0005), train loss 0.00360
+2025-07-28 21:51:48 Training for epoch 60 done, starting evaluation
+2025-07-28 21:51:49 Epoch 60/200 (lr=0.0005), train loss 0.00343, valid loss 0.00663
+2025-07-28 21:51:49 Model performance:
+2025-07-28 21:51:49   metrics/test.rmse:          75.81
+2025-07-28 21:51:49   metrics/test.rmse_pcutoff:   2.98
+2025-07-28 21:51:49   metrics/test.mAP:           54.83
+2025-07-28 21:51:49   metrics/test.mAR:           55.00
+2025-07-28 21:51:59 Epoch 61/200 (lr=0.0005), train loss 0.00365
+2025-07-28 21:52:09 Epoch 62/200 (lr=0.0005), train loss 0.00428
+2025-07-28 21:52:18 Epoch 63/200 (lr=0.0005), train loss 0.00411
+2025-07-28 21:52:28 Epoch 64/200 (lr=0.0005), train loss 0.00364
+2025-07-28 21:52:38 Epoch 65/200 (lr=0.0005), train loss 0.00336
+2025-07-28 21:52:48 Epoch 66/200 (lr=0.0005), train loss 0.00351
+2025-07-28 21:52:57 Epoch 67/200 (lr=0.0005), train loss 0.00406
+2025-07-28 21:53:07 Epoch 68/200 (lr=0.0005), train loss 0.00362
+2025-07-28 21:53:17 Epoch 69/200 (lr=0.0005), train loss 0.00338
+2025-07-28 21:53:27 Training for epoch 70 done, starting evaluation
+2025-07-28 21:53:27 Epoch 70/200 (lr=0.0005), train loss 0.00391, valid loss 0.00582
+2025-07-28 21:53:27 Model performance:
+2025-07-28 21:53:27   metrics/test.rmse:          64.19
+2025-07-28 21:53:27   metrics/test.rmse_pcutoff:   2.31
+2025-07-28 21:53:27   metrics/test.mAP:           60.00
+2025-07-28 21:53:27   metrics/test.mAR:           60.00
+2025-07-28 21:53:37 Epoch 71/200 (lr=0.0005), train loss 0.00380
+2025-07-28 21:53:47 Epoch 72/200 (lr=0.0005), train loss 0.00359
+2025-07-28 21:53:57 Epoch 73/200 (lr=0.0005), train loss 0.00352
+2025-07-28 21:54:07 Epoch 74/200 (lr=0.0005), train loss 0.00326
+2025-07-28 21:54:17 Epoch 75/200 (lr=0.0005), train loss 0.00341
+2025-07-28 21:54:26 Epoch 76/200 (lr=0.0005), train loss 0.00365
+2025-07-28 21:54:36 Epoch 77/200 (lr=0.0005), train loss 0.00348
+2025-07-28 21:54:46 Epoch 78/200 (lr=0.0005), train loss 0.00322
+2025-07-28 21:54:55 Epoch 79/200 (lr=0.0005), train loss 0.00315
+2025-07-28 21:55:05 Training for epoch 80 done, starting evaluation
+2025-07-28 21:55:06 Epoch 80/200 (lr=0.0005), train loss 0.00352, valid loss 0.00636
+2025-07-28 21:55:06 Model performance:
+2025-07-28 21:55:06   metrics/test.rmse:          78.36
+2025-07-28 21:55:06   metrics/test.rmse_pcutoff:   3.13
+2025-07-28 21:55:06   metrics/test.mAP:           55.21
+2025-07-28 21:55:06   metrics/test.mAR:           56.00
+2025-07-28 21:55:16 Epoch 81/200 (lr=0.0005), train loss 0.00330
+2025-07-28 21:55:26 Epoch 82/200 (lr=0.0005), train loss 0.00336
+2025-07-28 21:55:36 Epoch 83/200 (lr=0.0005), train loss 0.00334
+2025-07-28 21:55:46 Epoch 84/200 (lr=0.0005), train loss 0.00335
+2025-07-28 21:55:55 Epoch 85/200 (lr=0.0005), train loss 0.00342
+2025-07-28 21:56:05 Epoch 86/200 (lr=0.0005), train loss 0.00357
+2025-07-28 21:56:15 Epoch 87/200 (lr=0.0005), train loss 0.00331
+2025-07-28 21:56:25 Epoch 88/200 (lr=0.0005), train loss 0.00300
+2025-07-28 21:56:34 Epoch 89/200 (lr=0.0005), train loss 0.00308
+2025-07-28 21:56:44 Training for epoch 90 done, starting evaluation
+2025-07-28 21:56:45 Epoch 90/200 (lr=0.0001), train loss 0.00330, valid loss 0.00628
+2025-07-28 21:56:45 Model performance:
+2025-07-28 21:56:45   metrics/test.rmse:          74.41
+2025-07-28 21:56:45   metrics/test.rmse_pcutoff:   2.85
+2025-07-28 21:56:45   metrics/test.mAP:           60.00
+2025-07-28 21:56:45   metrics/test.mAR:           60.00
+2025-07-28 21:56:55 Epoch 91/200 (lr=0.0001), train loss 0.00301
+2025-07-28 21:57:05 Epoch 92/200 (lr=0.0001), train loss 0.00273
+2025-07-28 21:57:15 Epoch 93/200 (lr=0.0001), train loss 0.00272
+2025-07-28 21:57:24 Epoch 94/200 (lr=0.0001), train loss 0.00332
+2025-07-28 21:57:34 Epoch 95/200 (lr=0.0001), train loss 0.00262
+2025-07-28 21:57:44 Epoch 96/200 (lr=0.0001), train loss 0.00276
+2025-07-28 21:57:54 Epoch 97/200 (lr=0.0001), train loss 0.00350
+2025-07-28 21:58:04 Epoch 98/200 (lr=0.0001), train loss 0.00271
+2025-07-28 21:58:13 Epoch 99/200 (lr=0.0001), train loss 0.00321
+2025-07-28 21:58:23 Training for epoch 100 done, starting evaluation
+2025-07-28 21:58:24 Epoch 100/200 (lr=0.0001), train loss 0.00308, valid loss 0.00587
+2025-07-28 21:58:24 Model performance:
+2025-07-28 21:58:24   metrics/test.rmse:          65.96
+2025-07-28 21:58:24   metrics/test.rmse_pcutoff:   2.37
+2025-07-28 21:58:24   metrics/test.mAP:           60.00
+2025-07-28 21:58:24   metrics/test.mAR:           60.00
+2025-07-28 21:58:34 Epoch 101/200 (lr=0.0001), train loss 0.00291
+2025-07-28 21:58:43 Epoch 102/200 (lr=0.0001), train loss 0.00283
+2025-07-28 21:58:53 Epoch 103/200 (lr=0.0001), train loss 0.00282
+2025-07-28 21:59:03 Epoch 104/200 (lr=0.0001), train loss 0.00269
+2025-07-28 21:59:13 Epoch 105/200 (lr=0.0001), train loss 0.00243
+2025-07-28 21:59:23 Epoch 106/200 (lr=0.0001), train loss 0.00275
+2025-07-28 21:59:33 Epoch 107/200 (lr=0.0001), train loss 0.00261
+2025-07-28 21:59:42 Epoch 108/200 (lr=0.0001), train loss 0.00255
+2025-07-28 21:59:52 Epoch 109/200 (lr=0.0001), train loss 0.00287
+2025-07-28 22:00:02 Training for epoch 110 done, starting evaluation
+2025-07-28 22:00:03 Epoch 110/200 (lr=0.0001), train loss 0.00255, valid loss 0.00621
+2025-07-28 22:00:03 Model performance:
+2025-07-28 22:00:03   metrics/test.rmse:          65.25
+2025-07-28 22:00:03   metrics/test.rmse_pcutoff:   2.71
+2025-07-28 22:00:03   metrics/test.mAP:           60.00
+2025-07-28 22:00:03   metrics/test.mAR:           60.00
+2025-07-28 22:00:13 Epoch 111/200 (lr=0.0001), train loss 0.00261
+2025-07-28 22:00:22 Epoch 112/200 (lr=0.0001), train loss 0.00247
+2025-07-28 22:00:32 Epoch 113/200 (lr=0.0001), train loss 0.00253
+2025-07-28 22:00:42 Epoch 114/200 (lr=0.0001), train loss 0.00310
+2025-07-28 22:00:52 Epoch 115/200 (lr=0.0001), train loss 0.00310
+2025-07-28 22:01:02 Epoch 116/200 (lr=0.0001), train loss 0.00324
+2025-07-28 22:01:11 Epoch 117/200 (lr=0.0001), train loss 0.00278
+2025-07-28 22:01:21 Epoch 118/200 (lr=0.0001), train loss 0.00273
+2025-07-28 22:01:31 Epoch 119/200 (lr=0.0001), train loss 0.00287
+2025-07-28 22:01:41 Training for epoch 120 done, starting evaluation
+2025-07-28 22:01:42 Epoch 120/200 (lr=1e-05), train loss 0.00325, valid loss 0.00645
+2025-07-28 22:01:42 Model performance:
+2025-07-28 22:01:42   metrics/test.rmse:          68.29
+2025-07-28 22:01:42   metrics/test.rmse_pcutoff:   2.90
+2025-07-28 22:01:42   metrics/test.mAP:           60.00
+2025-07-28 22:01:42   metrics/test.mAR:           60.00
+2025-07-28 22:01:51 Epoch 121/200 (lr=1e-05), train loss 0.00251
+2025-07-28 22:02:01 Epoch 122/200 (lr=1e-05), train loss 0.00262
+2025-07-28 22:02:11 Epoch 123/200 (lr=1e-05), train loss 0.00250
+2025-07-28 22:02:20 Epoch 124/200 (lr=1e-05), train loss 0.00239
+2025-07-28 22:02:30 Epoch 125/200 (lr=1e-05), train loss 0.00262
+2025-07-28 22:02:40 Epoch 126/200 (lr=1e-05), train loss 0.00230
+2025-07-28 22:02:50 Epoch 127/200 (lr=1e-05), train loss 0.00264
+2025-07-28 22:03:00 Epoch 128/200 (lr=1e-05), train loss 0.00238
+2025-07-28 22:03:10 Epoch 129/200 (lr=1e-05), train loss 0.00241
+2025-07-28 22:03:20 Training for epoch 130 done, starting evaluation
+2025-07-28 22:03:20 Epoch 130/200 (lr=1e-05), train loss 0.00247, valid loss 0.00623
+2025-07-28 22:03:20 Model performance:
+2025-07-28 22:03:20   metrics/test.rmse:          70.55
+2025-07-28 22:03:20   metrics/test.rmse_pcutoff:   2.38
+2025-07-28 22:03:20   metrics/test.mAP:           60.00
+2025-07-28 22:03:20   metrics/test.mAR:           60.00
+2025-07-28 22:03:30 Epoch 131/200 (lr=1e-05), train loss 0.00260
+2025-07-28 22:03:40 Epoch 132/200 (lr=1e-05), train loss 0.00233
+2025-07-28 22:03:49 Epoch 133/200 (lr=1e-05), train loss 0.00272
+2025-07-28 22:03:59 Epoch 134/200 (lr=1e-05), train loss 0.00256
+2025-07-28 22:04:09 Epoch 135/200 (lr=1e-05), train loss 0.00253
+2025-07-28 22:04:19 Epoch 136/200 (lr=1e-05), train loss 0.00238
+2025-07-28 22:04:29 Epoch 137/200 (lr=1e-05), train loss 0.00250
+2025-07-28 22:04:39 Epoch 138/200 (lr=1e-05), train loss 0.00294
+2025-07-28 22:04:48 Epoch 139/200 (lr=1e-05), train loss 0.00251
+2025-07-28 22:04:58 Training for epoch 140 done, starting evaluation
+2025-07-28 22:04:59 Epoch 140/200 (lr=1e-05), train loss 0.00252, valid loss 0.00601
+2025-07-28 22:04:59 Model performance:
+2025-07-28 22:04:59   metrics/test.rmse:          66.44
+2025-07-28 22:04:59   metrics/test.rmse_pcutoff:   2.43
+2025-07-28 22:04:59   metrics/test.mAP:           60.00
+2025-07-28 22:04:59   metrics/test.mAR:           60.00
+2025-07-28 22:05:09 Epoch 141/200 (lr=1e-05), train loss 0.00264
+2025-07-28 22:05:18 Epoch 142/200 (lr=1e-05), train loss 0.00256
+2025-07-28 22:05:28 Epoch 143/200 (lr=1e-05), train loss 0.00243
+2025-07-28 22:05:38 Epoch 144/200 (lr=1e-05), train loss 0.00336
+2025-07-28 22:05:48 Epoch 145/200 (lr=1e-05), train loss 0.00277
+2025-07-28 22:05:57 Epoch 146/200 (lr=1e-05), train loss 0.00228
+2025-07-28 22:06:07 Epoch 147/200 (lr=1e-05), train loss 0.00240
+2025-07-28 22:06:17 Epoch 148/200 (lr=1e-05), train loss 0.00239
+2025-07-28 22:06:27 Epoch 149/200 (lr=1e-05), train loss 0.00243
+2025-07-28 22:06:37 Training for epoch 150 done, starting evaluation
+2025-07-28 22:06:38 Epoch 150/200 (lr=1e-05), train loss 0.00265, valid loss 0.00607
+2025-07-28 22:06:38 Model performance:
+2025-07-28 22:06:38   metrics/test.rmse:          61.20
+2025-07-28 22:06:38   metrics/test.rmse_pcutoff:   2.40
+2025-07-28 22:06:38   metrics/test.mAP:           60.54
+2025-07-28 22:06:38   metrics/test.mAR:           62.00
+2025-07-28 22:06:47 Epoch 151/200 (lr=1e-05), train loss 0.00253
+2025-07-28 22:06:57 Epoch 152/200 (lr=1e-05), train loss 0.00246
+2025-07-28 22:07:07 Epoch 153/200 (lr=1e-05), train loss 0.00245
+2025-07-28 22:07:17 Epoch 154/200 (lr=1e-05), train loss 0.00299
+2025-07-28 22:07:27 Epoch 155/200 (lr=1e-05), train loss 0.00256
+2025-07-28 22:07:36 Epoch 156/200 (lr=1e-05), train loss 0.00254
+2025-07-28 22:07:46 Epoch 157/200 (lr=1e-05), train loss 0.00245
+2025-07-28 22:07:56 Epoch 158/200 (lr=1e-05), train loss 0.00230
+2025-07-28 22:08:06 Epoch 159/200 (lr=1e-05), train loss 0.00240
+2025-07-28 22:08:16 Training for epoch 160 done, starting evaluation
+2025-07-28 22:08:17 Epoch 160/200 (lr=1e-05), train loss 0.00244, valid loss 0.00603
+2025-07-28 22:08:17 Model performance:
+2025-07-28 22:08:17   metrics/test.rmse:          60.96
+2025-07-28 22:08:17   metrics/test.rmse_pcutoff:   2.33
+2025-07-28 22:08:17   metrics/test.mAP:           60.73
+2025-07-28 22:08:17   metrics/test.mAR:           62.00
+2025-07-28 22:08:26 Epoch 161/200 (lr=1e-05), train loss 0.00239
+2025-07-28 22:08:36 Epoch 162/200 (lr=1e-05), train loss 0.00235
+2025-07-28 22:08:46 Epoch 163/200 (lr=1e-05), train loss 0.00261
+2025-07-28 22:08:55 Epoch 164/200 (lr=1e-05), train loss 0.00232
+2025-07-28 22:09:05 Epoch 165/200 (lr=1e-05), train loss 0.00252
+2025-07-28 22:09:15 Epoch 166/200 (lr=1e-05), train loss 0.00240
+2025-07-28 22:09:24 Epoch 167/200 (lr=1e-05), train loss 0.00227
+2025-07-28 22:09:34 Epoch 168/200 (lr=1e-05), train loss 0.00247
+2025-07-28 22:09:43 Epoch 169/200 (lr=1e-05), train loss 0.00232
+2025-07-28 22:09:53 Training for epoch 170 done, starting evaluation
+2025-07-28 22:09:54 Epoch 170/200 (lr=1e-05), train loss 0.00249, valid loss 0.00603
+2025-07-28 22:09:54 Model performance:
+2025-07-28 22:09:54   metrics/test.rmse:          58.32
+2025-07-28 22:09:54   metrics/test.rmse_pcutoff:   2.36
+2025-07-28 22:09:54   metrics/test.mAP:           60.36
+2025-07-28 22:09:54   metrics/test.mAR:           61.00
+2025-07-28 22:10:04 Epoch 171/200 (lr=1e-05), train loss 0.00229
+2025-07-28 22:10:14 Epoch 172/200 (lr=1e-05), train loss 0.00248
+2025-07-28 22:10:23 Epoch 173/200 (lr=1e-05), train loss 0.00265
+2025-07-28 22:10:33 Epoch 174/200 (lr=1e-05), train loss 0.00241
+2025-07-28 22:10:43 Epoch 175/200 (lr=1e-05), train loss 0.00244
+2025-07-28 22:10:53 Epoch 176/200 (lr=1e-05), train loss 0.00239
+2025-07-28 22:11:03 Epoch 177/200 (lr=1e-05), train loss 0.00241
+2025-07-28 22:11:12 Epoch 178/200 (lr=1e-05), train loss 0.00254
+2025-07-28 22:11:22 Epoch 179/200 (lr=1e-05), train loss 0.00282
+2025-07-28 22:11:32 Training for epoch 180 done, starting evaluation
+2025-07-28 22:11:33 Epoch 180/200 (lr=1e-05), train loss 0.00245, valid loss 0.00601
+2025-07-28 22:11:33 Model performance:
+2025-07-28 22:11:33   metrics/test.rmse:          58.36
+2025-07-28 22:11:33   metrics/test.rmse_pcutoff:   2.35
+2025-07-28 22:11:33   metrics/test.mAP:           60.22
+2025-07-28 22:11:33   metrics/test.mAR:           61.00
+2025-07-28 22:11:42 Epoch 181/200 (lr=1e-05), train loss 0.00253
+2025-07-28 22:11:52 Epoch 182/200 (lr=1e-05), train loss 0.00237
+2025-07-28 22:12:02 Epoch 183/200 (lr=1e-05), train loss 0.00219
+2025-07-28 22:12:11 Epoch 184/200 (lr=1e-05), train loss 0.00218
+2025-07-28 22:12:21 Epoch 185/200 (lr=1e-05), train loss 0.00234
+2025-07-28 22:12:31 Epoch 186/200 (lr=1e-05), train loss 0.00236
+2025-07-28 22:12:41 Epoch 187/200 (lr=1e-05), train loss 0.00286
+2025-07-28 22:12:50 Epoch 188/200 (lr=1e-05), train loss 0.00243
+2025-07-28 22:13:00 Epoch 189/200 (lr=1e-05), train loss 0.00217
+2025-07-28 22:13:10 Training for epoch 190 done, starting evaluation
+2025-07-28 22:13:11 Epoch 190/200 (lr=1e-05), train loss 0.00238, valid loss 0.00595
+2025-07-28 22:13:11 Model performance:
+2025-07-28 22:13:11   metrics/test.rmse:          62.86
+2025-07-28 22:13:11   metrics/test.rmse_pcutoff:   2.35
+2025-07-28 22:13:11   metrics/test.mAP:           60.00
+2025-07-28 22:13:11   metrics/test.mAR:           60.00
+2025-07-28 22:13:21 Epoch 191/200 (lr=1e-05), train loss 0.00310
+2025-07-28 22:13:30 Epoch 192/200 (lr=1e-05), train loss 0.00233
+2025-07-28 22:13:40 Epoch 193/200 (lr=1e-05), train loss 0.00228
+2025-07-28 22:13:50 Epoch 194/200 (lr=1e-05), train loss 0.00236
+2025-07-28 22:13:59 Epoch 195/200 (lr=1e-05), train loss 0.00229
+2025-07-28 22:14:09 Epoch 196/200 (lr=1e-05), train loss 0.00248
+2025-07-28 22:14:19 Epoch 197/200 (lr=1e-05), train loss 0.00230
+2025-07-28 22:14:28 Epoch 198/200 (lr=1e-05), train loss 0.00239
+2025-07-28 22:14:38 Epoch 199/200 (lr=1e-05), train loss 0.00255
+2025-07-28 22:14:48 Training for epoch 200 done, starting evaluation
+2025-07-28 22:14:49 Epoch 200/200 (lr=1e-05), train loss 0.00308, valid loss 0.00603
+2025-07-28 22:14:49 Model performance:
+2025-07-28 22:14:49   metrics/test.rmse:          56.11
+2025-07-28 22:14:49   metrics/test.rmse_pcutoff:   2.40
+2025-07-28 22:14:49   metrics/test.mAP:           60.22
+2025-07-28 22:14:49   metrics/test.mAR:           61.00
+2025-07-29 17:56:28 Training with configuration:
+2025-07-29 17:56:28 data:
+2025-07-29 17:56:28   bbox_margin: 20
+2025-07-29 17:56:28   colormode: RGB
+2025-07-29 17:56:28   inference:
+2025-07-29 17:56:28     normalize_images: True
+2025-07-29 17:56:28   train:
+2025-07-29 17:56:28     affine:
+2025-07-29 17:56:28       p: 0.5
+2025-07-29 17:56:28       rotation: 30
+2025-07-29 17:56:28       scaling: [0.5, 1.25]
+2025-07-29 17:56:28       translation: 0
+2025-07-29 17:56:28     crop_sampling:
+2025-07-29 17:56:28       width: 448
+2025-07-29 17:56:28       height: 448
+2025-07-29 17:56:28       max_shift: 0.1
+2025-07-29 17:56:28       method: hybrid
+2025-07-29 17:56:28     gaussian_noise: 12.75
+2025-07-29 17:56:28     motion_blur: True
+2025-07-29 17:56:28     normalize_images: True
+2025-07-29 17:56:28 device: auto
+2025-07-29 17:56:28 metadata:
+2025-07-29 17:56:28   project_path: /Users/rishi/Desktop/singlelarvae_imaging-rishi-2025-06-13
+2025-07-29 17:56:28   pose_config_path: /Users/rishi/Desktop/singlelarvae_imaging-rishi-2025-06-13/dlc-models-pytorch/iteration-0/singlelarvae_imagingJun13-trainset95shuffle1/train/pytorch_config.yaml
+2025-07-29 17:56:28   bodyparts: ['left_eye', 'right_eye', 'middle', 'tail', 'well_center']
+2025-07-29 17:56:28   unique_bodyparts: []
+2025-07-29 17:56:28   individuals: ['animal']
+2025-07-29 17:56:28   with_identity: None
+2025-07-29 17:56:28 method: bu
+2025-07-29 17:56:28 model:
+2025-07-29 17:56:28   backbone:
+2025-07-29 17:56:28     type: ResNet
+2025-07-29 17:56:28     model_name: resnet50_gn
+2025-07-29 17:56:28     output_stride: 16
+2025-07-29 17:56:28     freeze_bn_stats: False
+2025-07-29 17:56:28     freeze_bn_weights: False
+2025-07-29 17:56:28   backbone_output_channels: 2048
+2025-07-29 17:56:28   heads:
+2025-07-29 17:56:28     bodypart:
+2025-07-29 17:56:28       type: HeatmapHead
+2025-07-29 17:56:28       weight_init: normal
+2025-07-29 17:56:28       predictor:
+2025-07-29 17:56:28         type: HeatmapPredictor
+2025-07-29 17:56:28         apply_sigmoid: False
+2025-07-29 17:56:28         clip_scores: True
+2025-07-29 17:56:28         location_refinement: True
+2025-07-29 17:56:28         locref_std: 7.2801
+2025-07-29 17:56:28       target_generator:
+2025-07-29 17:56:28         type: HeatmapGaussianGenerator
+2025-07-29 17:56:28         num_heatmaps: 5
+2025-07-29 17:56:28         pos_dist_thresh: 17
+2025-07-29 17:56:28         heatmap_mode: KEYPOINT
+2025-07-29 17:56:28         gradient_masking: False
+2025-07-29 17:56:28         generate_locref: True
+2025-07-29 17:56:28         locref_std: 7.2801
+2025-07-29 17:56:28       criterion:
+2025-07-29 17:56:28         heatmap:
+2025-07-29 17:56:28           type: WeightedMSECriterion
+2025-07-29 17:56:28           weight: 1.0
+2025-07-29 17:56:28         locref:
+2025-07-29 17:56:28           type: WeightedHuberCriterion
+2025-07-29 17:56:28           weight: 0.05
+2025-07-29 17:56:28       heatmap_config:
+2025-07-29 17:56:28         channels: [2048, 5]
+2025-07-29 17:56:28         kernel_size: [3]
+2025-07-29 17:56:28         strides: [2]
+2025-07-29 17:56:28       locref_config:
+2025-07-29 17:56:28         channels: [2048, 10]
+2025-07-29 17:56:28         kernel_size: [3]
+2025-07-29 17:56:28         strides: [2]
+2025-07-29 17:56:28 net_type: resnet_50
+2025-07-29 17:56:28 runner:
+2025-07-29 17:56:28   type: PoseTrainingRunner
+2025-07-29 17:56:28   gpus: None
+2025-07-29 17:56:28   key_metric: test.mAP
+2025-07-29 17:56:28   key_metric_asc: True
+2025-07-29 17:56:28   eval_interval: 10
+2025-07-29 17:56:28   optimizer:
+2025-07-29 17:56:28     type: AdamW
+2025-07-29 17:56:28     params:
+2025-07-29 17:56:28       lr: 0.0005
+2025-07-29 17:56:28   scheduler:
+2025-07-29 17:56:28     type: LRListScheduler
+2025-07-29 17:56:28     params:
+2025-07-29 17:56:28       lr_list: [[0.0001], [1e-05]]
+2025-07-29 17:56:28       milestones: [90, 120]
+2025-07-29 17:56:28   snapshots:
+2025-07-29 17:56:28     max_snapshots: 5
+2025-07-29 17:56:28     save_epochs: 25
+2025-07-29 17:56:28     save_optimizer_state: False
+2025-07-29 17:56:28 train_settings:
+2025-07-29 17:56:28   batch_size: 8
+2025-07-29 17:56:28   dataloader_workers: 0
+2025-07-29 17:56:28   dataloader_pin_memory: False
+2025-07-29 17:56:28   display_iters: 500
+2025-07-29 17:56:28   epochs: 200
+2025-07-29 17:56:28   seed: 42
+2025-07-29 17:56:28 Loading pretrained weights from Hugging Face hub (timm/resnet50_gn.a1h_in1k)
+2025-07-29 17:56:29 [timm/resnet50_gn.a1h_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-07-29 17:56:30 Data Transforms:
+2025-07-29 17:56:30   Training:   Compose([
+  Affine(always_apply=False, p=0.5, interpolation=1, mask_interpolation=0, cval=0, mode=0, scale={'x': (0.5, 1.25), 'y': (0.5, 1.25)}, translate_percent=None, translate_px={'x': (0, 0), 'y': (0, 0)}, rotate=(-30, 30), fit_output=False, shear={'x': (0.0, 0.0), 'y': (0.0, 0.0)}, cval_mask=0, keep_ratio=True, rotate_method='largest_box'),
+  PadIfNeeded(always_apply=True, p=1.0, min_height=448, min_width=448, pad_height_divisor=None, pad_width_divisor=None, position=PositionType.CENTER, border_mode=0, value=None, mask_value=None),
+  KeypointAwareCrop(always_apply=True, p=1.0, width=448, height=448, max_shift=0.1, crop_sampling='hybrid'),
+  MotionBlur(always_apply=False, p=0.5, blur_limit=(3, 7), allow_shifted=True),
+  GaussNoise(always_apply=False, p=0.5, var_limit=(0, 162.5625), per_channel=True, mean=0),
+  Normalize(always_apply=False, p=1.0, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], max_pixel_value=255.0),
+], p=1.0, bbox_params={'format': 'coco', 'label_fields': ['bbox_labels'], 'min_area': 0.0, 'min_visibility': 0.0, 'min_width': 0.0, 'min_height': 0.0, 'check_each_transform': True}, keypoint_params={'format': 'xy', 'label_fields': ['class_labels'], 'remove_invisible': False, 'angle_in_degrees': True, 'check_each_transform': True}, additional_targets={}, is_check_shapes=True)
+2025-07-29 17:56:30   Validation: Compose([
+  Normalize(always_apply=False, p=1.0, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], max_pixel_value=255.0),
+], p=1.0, bbox_params={'format': 'coco', 'label_fields': ['bbox_labels'], 'min_area': 0.0, 'min_visibility': 0.0, 'min_width': 0.0, 'min_height': 0.0, 'check_each_transform': True}, keypoint_params={'format': 'xy', 'label_fields': ['class_labels'], 'remove_invisible': False, 'angle_in_degrees': True, 'check_each_transform': True}, additional_targets={}, is_check_shapes=True)
+2025-07-29 17:56:32 Using 193 images and 11 for testing
+2025-07-29 17:56:32 
+Starting pose model training...
+--------------------------------------------------
+2025-07-29 17:56:44 Epoch 1/200 (lr=0.0005), train loss 0.01480
+2025-07-29 17:56:51 Epoch 2/200 (lr=0.0005), train loss 0.01248
+2025-07-29 17:56:59 Epoch 3/200 (lr=0.0005), train loss 0.01085
+2025-07-29 17:57:07 Epoch 4/200 (lr=0.0005), train loss 0.01067
+2025-07-29 17:57:14 Epoch 5/200 (lr=0.0005), train loss 0.00983
+2025-07-29 17:57:22 Epoch 6/200 (lr=0.0005), train loss 0.00906
+2025-07-29 17:57:29 Epoch 7/200 (lr=0.0005), train loss 0.00808
+2025-07-29 17:57:37 Epoch 8/200 (lr=0.0005), train loss 0.00796
+2025-07-29 17:57:45 Epoch 9/200 (lr=0.0005), train loss 0.00715
+2025-07-29 17:57:53 Training for epoch 10 done, starting evaluation
+2025-07-29 17:57:54 Epoch 10/200 (lr=0.0005), train loss 0.00646, valid loss 0.00779
+2025-07-29 17:57:54 Model performance:
+2025-07-29 17:57:54   metrics/test.rmse:         130.31
+2025-07-29 17:57:54   metrics/test.rmse_pcutoff:   3.18
+2025-07-29 17:57:54   metrics/test.mAP:           29.05
+2025-07-29 17:57:54   metrics/test.mAR:           41.00
+2025-07-29 17:58:01 Epoch 11/200 (lr=0.0005), train loss 0.00619
+2025-07-29 17:58:09 Epoch 12/200 (lr=0.0005), train loss 0.00590
+2025-07-29 17:58:17 Epoch 13/200 (lr=0.0005), train loss 0.00563
+2025-07-29 17:58:25 Epoch 14/200 (lr=0.0005), train loss 0.00527
+2025-07-29 17:58:32 Epoch 15/200 (lr=0.0005), train loss 0.00511
+2025-07-29 17:58:40 Epoch 16/200 (lr=0.0005), train loss 0.00448
+2025-07-29 17:58:48 Epoch 17/200 (lr=0.0005), train loss 0.00461
+2025-07-29 17:58:56 Epoch 18/200 (lr=0.0005), train loss 0.00422
+2025-07-29 17:59:04 Epoch 19/200 (lr=0.0005), train loss 0.00419
+2025-07-29 17:59:11 Training for epoch 20 done, starting evaluation
+2025-07-29 17:59:12 Epoch 20/200 (lr=0.0005), train loss 0.00449, valid loss 0.00646
+2025-07-29 17:59:12 Model performance:
+2025-07-29 17:59:12   metrics/test.rmse:         100.49
+2025-07-29 17:59:12   metrics/test.rmse_pcutoff:   3.19
+2025-07-29 17:59:12   metrics/test.mAP:           44.49
+2025-07-29 17:59:12   metrics/test.mAR:           56.00
+2025-07-29 17:59:20 Epoch 21/200 (lr=0.0005), train loss 0.00417
+2025-07-29 17:59:27 Epoch 22/200 (lr=0.0005), train loss 0.00408
+2025-07-29 17:59:35 Epoch 23/200 (lr=0.0005), train loss 0.00447
+2025-07-29 17:59:43 Epoch 24/200 (lr=0.0005), train loss 0.00413
+2025-07-29 17:59:51 Epoch 25/200 (lr=0.0005), train loss 0.00443
+2025-07-29 17:59:59 Epoch 26/200 (lr=0.0005), train loss 0.00475
+2025-07-29 18:00:06 Epoch 27/200 (lr=0.0005), train loss 0.00414
+2025-07-29 18:00:14 Epoch 28/200 (lr=0.0005), train loss 0.00404
+2025-07-29 18:00:21 Epoch 29/200 (lr=0.0005), train loss 0.00404
+2025-07-29 18:00:29 Training for epoch 30 done, starting evaluation
+2025-07-29 18:00:30 Epoch 30/200 (lr=0.0005), train loss 0.00417, valid loss 0.00622
+2025-07-29 18:00:30 Model performance:
+2025-07-29 18:00:30   metrics/test.rmse:          71.23
+2025-07-29 18:00:30   metrics/test.rmse_pcutoff:   2.82
+2025-07-29 18:00:30   metrics/test.mAP:           61.66
+2025-07-29 18:00:30   metrics/test.mAR:           68.00
+2025-07-29 18:00:37 Epoch 31/200 (lr=0.0005), train loss 0.00387
+2025-07-29 18:00:45 Epoch 32/200 (lr=0.0005), train loss 0.00396
+2025-07-29 18:00:53 Epoch 33/200 (lr=0.0005), train loss 0.00394
+2025-07-29 18:01:00 Epoch 34/200 (lr=0.0005), train loss 0.00404
+2025-07-29 18:01:08 Epoch 35/200 (lr=0.0005), train loss 0.00377
+2025-07-29 18:01:16 Epoch 36/200 (lr=0.0005), train loss 0.00376
+2025-07-29 18:01:23 Epoch 37/200 (lr=0.0005), train loss 0.00365
+2025-07-29 18:01:31 Epoch 38/200 (lr=0.0005), train loss 0.00447
+2025-07-29 18:01:39 Epoch 39/200 (lr=0.0005), train loss 0.00417
+2025-07-29 18:01:46 Training for epoch 40 done, starting evaluation
+2025-07-29 18:01:47 Epoch 40/200 (lr=0.0005), train loss 0.00360, valid loss 0.00567
+2025-07-29 18:01:47 Model performance:
+2025-07-29 18:01:47   metrics/test.rmse:          74.34
+2025-07-29 18:01:47   metrics/test.rmse_pcutoff:  26.61
+2025-07-29 18:01:47   metrics/test.mAP:           55.33
+2025-07-29 18:01:47   metrics/test.mAR:           64.00
+2025-07-29 18:01:55 Epoch 41/200 (lr=0.0005), train loss 0.00383
+2025-07-29 18:02:02 Epoch 42/200 (lr=0.0005), train loss 0.00359
+2025-07-29 18:02:10 Epoch 43/200 (lr=0.0005), train loss 0.00332
+2025-07-29 18:02:17 Epoch 44/200 (lr=0.0005), train loss 0.00351
+2025-07-29 18:02:25 Epoch 45/200 (lr=0.0005), train loss 0.00371
+2025-07-29 18:02:33 Epoch 46/200 (lr=0.0005), train loss 0.00400
+2025-07-29 18:02:41 Epoch 47/200 (lr=0.0005), train loss 0.00383
+2025-07-29 18:02:48 Epoch 48/200 (lr=0.0005), train loss 0.00337
+2025-07-29 18:02:56 Epoch 49/200 (lr=0.0005), train loss 0.00340
+2025-07-29 18:03:04 Training for epoch 50 done, starting evaluation
+2025-07-29 18:03:04 Epoch 50/200 (lr=0.0005), train loss 0.00327, valid loss 0.00552
+2025-07-29 18:03:04 Model performance:
+2025-07-29 18:03:04   metrics/test.rmse:          80.45
+2025-07-29 18:03:04   metrics/test.rmse_pcutoff:   2.66
+2025-07-29 18:03:04   metrics/test.mAP:           50.41
+2025-07-29 18:03:04   metrics/test.mAR:           56.00
+2025-07-29 18:03:12 Epoch 51/200 (lr=0.0005), train loss 0.00387
+2025-07-29 18:03:20 Epoch 52/200 (lr=0.0005), train loss 0.00399
+2025-07-29 18:03:27 Epoch 53/200 (lr=0.0005), train loss 0.00350
+2025-07-29 18:03:35 Epoch 54/200 (lr=0.0005), train loss 0.00417
+2025-07-29 18:03:43 Epoch 55/200 (lr=0.0005), train loss 0.00363
+2025-07-29 18:03:51 Epoch 56/200 (lr=0.0005), train loss 0.00362
+2025-07-29 18:03:58 Epoch 57/200 (lr=0.0005), train loss 0.00405
+2025-07-29 18:04:06 Epoch 58/200 (lr=0.0005), train loss 0.00391
+2025-07-29 18:04:14 Epoch 59/200 (lr=0.0005), train loss 0.00347
+2025-07-29 18:04:21 Training for epoch 60 done, starting evaluation
+2025-07-29 18:04:22 Epoch 60/200 (lr=0.0005), train loss 0.00326, valid loss 0.00602
+2025-07-29 18:04:22 Model performance:
+2025-07-29 18:04:22   metrics/test.rmse:          68.09
+2025-07-29 18:04:22   metrics/test.rmse_pcutoff:   2.99
+2025-07-29 18:04:22   metrics/test.mAP:           58.94
+2025-07-29 18:04:22   metrics/test.mAR:           62.00
+2025-07-29 18:04:30 Epoch 61/200 (lr=0.0005), train loss 0.00337
+2025-07-29 18:04:38 Epoch 62/200 (lr=0.0005), train loss 0.00379
+2025-07-29 18:04:45 Epoch 63/200 (lr=0.0005), train loss 0.00368
+2025-07-29 18:04:53 Epoch 64/200 (lr=0.0005), train loss 0.00347
+2025-07-29 18:05:00 Epoch 65/200 (lr=0.0005), train loss 0.00330
+2025-07-29 18:05:08 Epoch 66/200 (lr=0.0005), train loss 0.00332
+2025-07-29 18:05:16 Epoch 67/200 (lr=0.0005), train loss 0.00419
+2025-07-29 18:05:23 Epoch 68/200 (lr=0.0005), train loss 0.00365
+2025-07-29 18:05:31 Epoch 69/200 (lr=0.0005), train loss 0.00332
+2025-07-29 18:05:38 Training for epoch 70 done, starting evaluation
+2025-07-29 18:05:39 Epoch 70/200 (lr=0.0005), train loss 0.00385, valid loss 0.00574
+2025-07-29 18:05:39 Model performance:
+2025-07-29 18:05:39   metrics/test.rmse:          55.01
+2025-07-29 18:05:39   metrics/test.rmse_pcutoff:   2.28
+2025-07-29 18:05:39   metrics/test.mAP:           60.00
+2025-07-29 18:05:39   metrics/test.mAR:           60.00
+2025-07-29 18:05:47 Epoch 71/200 (lr=0.0005), train loss 0.00361
+2025-07-29 18:05:54 Epoch 72/200 (lr=0.0005), train loss 0.00342
+2025-07-29 18:06:02 Epoch 73/200 (lr=0.0005), train loss 0.00345
+2025-07-29 18:06:10 Epoch 74/200 (lr=0.0005), train loss 0.00320
+2025-07-29 18:06:18 Epoch 75/200 (lr=0.0005), train loss 0.00355
+2025-07-29 18:06:25 Epoch 76/200 (lr=0.0005), train loss 0.00361
+2025-07-29 18:06:33 Epoch 77/200 (lr=0.0005), train loss 0.00342
+2025-07-29 18:06:41 Epoch 78/200 (lr=0.0005), train loss 0.00308
+2025-07-29 18:06:48 Epoch 79/200 (lr=0.0005), train loss 0.00310
+2025-07-29 18:06:56 Training for epoch 80 done, starting evaluation
+2025-07-29 18:06:57 Epoch 80/200 (lr=0.0005), train loss 0.00349, valid loss 0.00567
+2025-07-29 18:06:57 Model performance:
+2025-07-29 18:06:57   metrics/test.rmse:          77.58
+2025-07-29 18:06:57   metrics/test.rmse_pcutoff:   3.33
+2025-07-29 18:06:57   metrics/test.mAP:           56.87
+2025-07-29 18:06:57   metrics/test.mAR:           64.00
+2025-07-29 18:07:04 Epoch 81/200 (lr=0.0005), train loss 0.00333
+2025-07-29 18:07:12 Epoch 82/200 (lr=0.0005), train loss 0.00338
+2025-07-29 18:07:20 Epoch 83/200 (lr=0.0005), train loss 0.00334
+2025-07-29 18:07:28 Epoch 84/200 (lr=0.0005), train loss 0.00329
+2025-07-29 18:07:35 Epoch 85/200 (lr=0.0005), train loss 0.00330
+2025-07-29 18:07:43 Epoch 86/200 (lr=0.0005), train loss 0.00349
+2025-07-29 18:07:50 Epoch 87/200 (lr=0.0005), train loss 0.00328
+2025-07-29 18:07:58 Epoch 88/200 (lr=0.0005), train loss 0.00298
+2025-07-29 18:08:06 Epoch 89/200 (lr=0.0005), train loss 0.00303
+2025-07-29 18:08:13 Training for epoch 90 done, starting evaluation
+2025-07-29 18:08:14 Epoch 90/200 (lr=0.0001), train loss 0.00321, valid loss 0.00598
+2025-07-29 18:08:14 Model performance:
+2025-07-29 18:08:14   metrics/test.rmse:          59.99
+2025-07-29 18:08:14   metrics/test.rmse_pcutoff:   2.60
+2025-07-29 18:08:14   metrics/test.mAP:           60.48
+2025-07-29 18:08:14   metrics/test.mAR:           64.00
+2025-07-29 18:08:22 Epoch 91/200 (lr=0.0001), train loss 0.00276
+2025-07-29 18:08:29 Epoch 92/200 (lr=0.0001), train loss 0.00263
+2025-07-29 18:08:37 Epoch 93/200 (lr=0.0001), train loss 0.00268
+2025-07-29 18:08:45 Epoch 94/200 (lr=0.0001), train loss 0.00323
+2025-07-29 18:08:53 Epoch 95/200 (lr=0.0001), train loss 0.00253
+2025-07-29 18:09:00 Epoch 96/200 (lr=0.0001), train loss 0.00270
+2025-07-29 18:09:08 Epoch 97/200 (lr=0.0001), train loss 0.00328
+2025-07-29 18:09:16 Epoch 98/200 (lr=0.0001), train loss 0.00267
+2025-07-29 18:09:23 Epoch 99/200 (lr=0.0001), train loss 0.00308
+2025-07-29 18:09:31 Training for epoch 100 done, starting evaluation
+2025-07-29 18:09:32 Epoch 100/200 (lr=0.0001), train loss 0.00299, valid loss 0.00563
+2025-07-29 18:09:32 Model performance:
+2025-07-29 18:09:32   metrics/test.rmse:          75.05
+2025-07-29 18:09:32   metrics/test.rmse_pcutoff:   2.45
+2025-07-29 18:09:32   metrics/test.mAP:           61.37
+2025-07-29 18:09:32   metrics/test.mAR:           67.00
+2025-07-29 18:09:39 Epoch 101/200 (lr=0.0001), train loss 0.00275
+2025-07-29 18:09:47 Epoch 102/200 (lr=0.0001), train loss 0.00267
+2025-07-29 18:09:55 Epoch 103/200 (lr=0.0001), train loss 0.00273
+2025-07-29 18:10:03 Epoch 104/200 (lr=0.0001), train loss 0.00264
+2025-07-29 18:10:11 Epoch 105/200 (lr=0.0001), train loss 0.00226
+2025-07-29 18:10:18 Epoch 106/200 (lr=0.0001), train loss 0.00274
+2025-07-29 18:10:26 Epoch 107/200 (lr=0.0001), train loss 0.00255
+2025-07-29 18:10:34 Epoch 108/200 (lr=0.0001), train loss 0.00246
+2025-07-29 18:10:42 Epoch 109/200 (lr=0.0001), train loss 0.00289
+2025-07-29 18:10:49 Training for epoch 110 done, starting evaluation
+2025-07-29 18:10:50 Epoch 110/200 (lr=0.0001), train loss 0.00246, valid loss 0.00597
+2025-07-29 18:10:50 Model performance:
+2025-07-29 18:10:50   metrics/test.rmse:          60.72
+2025-07-29 18:10:50   metrics/test.rmse_pcutoff:   2.22
+2025-07-29 18:10:50   metrics/test.mAP:           60.78
+2025-07-29 18:10:50   metrics/test.mAR:           68.00
+2025-07-29 18:10:57 Epoch 111/200 (lr=0.0001), train loss 0.00242
+2025-07-29 18:11:05 Epoch 112/200 (lr=0.0001), train loss 0.00241
+2025-07-29 18:11:13 Epoch 113/200 (lr=0.0001), train loss 0.00253
+2025-07-29 18:11:20 Epoch 114/200 (lr=0.0001), train loss 0.00329
+2025-07-29 18:11:28 Epoch 115/200 (lr=0.0001), train loss 0.00314
+2025-07-29 18:11:36 Epoch 116/200 (lr=0.0001), train loss 0.00318
+2025-07-29 18:11:43 Epoch 117/200 (lr=0.0001), train loss 0.00275
+2025-07-29 18:11:51 Epoch 118/200 (lr=0.0001), train loss 0.00258
+2025-07-29 18:11:59 Epoch 119/200 (lr=0.0001), train loss 0.00293
+2025-07-29 18:12:06 Training for epoch 120 done, starting evaluation
+2025-07-29 18:12:07 Epoch 120/200 (lr=1e-05), train loss 0.00307, valid loss 0.00579
+2025-07-29 18:12:07 Model performance:
+2025-07-29 18:12:07   metrics/test.rmse:          66.43
+2025-07-29 18:12:07   metrics/test.rmse_pcutoff:   3.32
+2025-07-29 18:12:07   metrics/test.mAP:           61.66
+2025-07-29 18:12:07   metrics/test.mAR:           68.00
+2025-07-29 18:12:14 Epoch 121/200 (lr=1e-05), train loss 0.00245
+2025-07-29 18:12:22 Epoch 122/200 (lr=1e-05), train loss 0.00260
+2025-07-29 18:12:30 Epoch 123/200 (lr=1e-05), train loss 0.00248
+2025-07-29 18:12:37 Epoch 124/200 (lr=1e-05), train loss 0.00235
+2025-07-29 18:12:45 Epoch 125/200 (lr=1e-05), train loss 0.00254
+2025-07-29 18:12:53 Epoch 126/200 (lr=1e-05), train loss 0.00231
+2025-07-29 18:13:01 Epoch 127/200 (lr=1e-05), train loss 0.00262
+2025-07-29 18:13:08 Epoch 128/200 (lr=1e-05), train loss 0.00227
+2025-07-29 18:13:16 Epoch 129/200 (lr=1e-05), train loss 0.00237
+2025-07-29 18:13:24 Training for epoch 130 done, starting evaluation
+2025-07-29 18:13:24 Epoch 130/200 (lr=1e-05), train loss 0.00233, valid loss 0.00575
+2025-07-29 18:13:24 Model performance:
+2025-07-29 18:13:24   metrics/test.rmse:          67.53
+2025-07-29 18:13:24   metrics/test.rmse_pcutoff:   3.25
+2025-07-29 18:13:24   metrics/test.mAP:           61.66
+2025-07-29 18:13:24   metrics/test.mAR:           68.00
+2025-07-29 18:13:32 Epoch 131/200 (lr=1e-05), train loss 0.00255
+2025-07-29 18:13:40 Epoch 132/200 (lr=1e-05), train loss 0.00227
+2025-07-29 18:13:47 Epoch 133/200 (lr=1e-05), train loss 0.00261
+2025-07-29 18:13:55 Epoch 134/200 (lr=1e-05), train loss 0.00246
+2025-07-29 18:14:03 Epoch 135/200 (lr=1e-05), train loss 0.00253
+2025-07-29 18:14:10 Epoch 136/200 (lr=1e-05), train loss 0.00234
+2025-07-29 18:14:18 Epoch 137/200 (lr=1e-05), train loss 0.00243
+2025-07-29 18:14:26 Epoch 138/200 (lr=1e-05), train loss 0.00290
+2025-07-29 18:14:34 Epoch 139/200 (lr=1e-05), train loss 0.00256
+2025-07-29 18:14:41 Training for epoch 140 done, starting evaluation
+2025-07-29 18:14:42 Epoch 140/200 (lr=1e-05), train loss 0.00238, valid loss 0.00571
+2025-07-29 18:14:42 Model performance:
+2025-07-29 18:14:42   metrics/test.rmse:          65.73
+2025-07-29 18:14:42   metrics/test.rmse_pcutoff:   3.25
+2025-07-29 18:14:42   metrics/test.mAP:           61.66
+2025-07-29 18:14:42   metrics/test.mAR:           68.00
+2025-07-29 18:14:50 Epoch 141/200 (lr=1e-05), train loss 0.00267
+2025-07-29 18:14:57 Epoch 142/200 (lr=1e-05), train loss 0.00246
+2025-07-29 18:15:05 Epoch 143/200 (lr=1e-05), train loss 0.00233
+2025-07-29 18:15:13 Epoch 144/200 (lr=1e-05), train loss 0.00319
+2025-07-29 18:15:21 Epoch 145/200 (lr=1e-05), train loss 0.00308
+2025-07-29 18:15:28 Epoch 146/200 (lr=1e-05), train loss 0.00213
+2025-07-29 18:15:36 Epoch 147/200 (lr=1e-05), train loss 0.00235
+2025-07-29 18:15:44 Epoch 148/200 (lr=1e-05), train loss 0.00235
+2025-07-29 18:15:51 Epoch 149/200 (lr=1e-05), train loss 0.00247
+2025-07-29 18:15:59 Training for epoch 150 done, starting evaluation
+2025-07-29 18:16:00 Epoch 150/200 (lr=1e-05), train loss 0.00252, valid loss 0.00575
+2025-07-29 18:16:00 Model performance:
+2025-07-29 18:16:00   metrics/test.rmse:          59.23
+2025-07-29 18:16:00   metrics/test.rmse_pcutoff:   3.20
+2025-07-29 18:16:00   metrics/test.mAP:           62.17
+2025-07-29 18:16:00   metrics/test.mAR:           69.00
+2025-07-29 18:16:08 Epoch 151/200 (lr=1e-05), train loss 0.00243
+2025-07-29 18:16:16 Epoch 152/200 (lr=1e-05), train loss 0.00240
+2025-07-29 18:16:23 Epoch 153/200 (lr=1e-05), train loss 0.00234
+2025-07-29 18:16:31 Epoch 154/200 (lr=1e-05), train loss 0.00275
+2025-07-29 18:16:39 Epoch 155/200 (lr=1e-05), train loss 0.00277
+2025-07-29 18:16:46 Epoch 156/200 (lr=1e-05), train loss 0.00251
+2025-07-29 18:16:54 Epoch 157/200 (lr=1e-05), train loss 0.00242
+2025-07-29 18:17:02 Epoch 158/200 (lr=1e-05), train loss 0.00221
+2025-07-29 18:17:10 Epoch 159/200 (lr=1e-05), train loss 0.00231
+2025-07-29 18:17:17 Training for epoch 160 done, starting evaluation
+2025-07-29 18:17:18 Epoch 160/200 (lr=1e-05), train loss 0.00243, valid loss 0.00566
+2025-07-29 18:17:18 Model performance:
+2025-07-29 18:17:18   metrics/test.rmse:          58.90
+2025-07-29 18:17:18   metrics/test.rmse_pcutoff:   3.24
+2025-07-29 18:17:18   metrics/test.mAP:           62.17
+2025-07-29 18:17:18   metrics/test.mAR:           69.00
+2025-07-29 18:17:26 Epoch 161/200 (lr=1e-05), train loss 0.00237
+2025-07-29 18:17:34 Epoch 162/200 (lr=1e-05), train loss 0.00233
+2025-07-29 18:17:41 Epoch 163/200 (lr=1e-05), train loss 0.00249
+2025-07-29 18:17:49 Epoch 164/200 (lr=1e-05), train loss 0.00224
+2025-07-29 18:17:56 Epoch 165/200 (lr=1e-05), train loss 0.00232
+2025-07-29 18:18:04 Epoch 166/200 (lr=1e-05), train loss 0.00230
+2025-07-29 18:18:11 Epoch 167/200 (lr=1e-05), train loss 0.00226
+2025-07-29 18:18:19 Epoch 168/200 (lr=1e-05), train loss 0.00238
+2025-07-29 18:18:26 Epoch 169/200 (lr=1e-05), train loss 0.00218
+2025-07-29 18:18:34 Training for epoch 170 done, starting evaluation
+2025-07-29 18:18:35 Epoch 170/200 (lr=1e-05), train loss 0.00227, valid loss 0.00573
+2025-07-29 18:18:35 Model performance:
+2025-07-29 18:18:35   metrics/test.rmse:          72.82
+2025-07-29 18:18:35   metrics/test.rmse_pcutoff:   3.21
+2025-07-29 18:18:35   metrics/test.mAP:           61.66
+2025-07-29 18:18:35   metrics/test.mAR:           68.00
+2025-07-29 18:18:43 Epoch 171/200 (lr=1e-05), train loss 0.00222
+2025-07-29 18:18:50 Epoch 172/200 (lr=1e-05), train loss 0.00255
+2025-07-29 18:18:58 Epoch 173/200 (lr=1e-05), train loss 0.00243
+2025-07-29 18:19:05 Epoch 174/200 (lr=1e-05), train loss 0.00239
+2025-07-29 18:19:13 Epoch 175/200 (lr=1e-05), train loss 0.00241
+2025-07-29 18:19:21 Epoch 176/200 (lr=1e-05), train loss 0.00229
+2025-07-29 18:19:28 Epoch 177/200 (lr=1e-05), train loss 0.00229
+2025-07-29 18:19:36 Epoch 178/200 (lr=1e-05), train loss 0.00240
+2025-07-29 18:19:44 Epoch 179/200 (lr=1e-05), train loss 0.00284
+2025-07-29 18:19:51 Training for epoch 180 done, starting evaluation
+2025-07-29 18:19:52 Epoch 180/200 (lr=1e-05), train loss 0.00231, valid loss 0.00569
+2025-07-29 18:19:52 Model performance:
+2025-07-29 18:19:52   metrics/test.rmse:          64.26
+2025-07-29 18:19:52   metrics/test.rmse_pcutoff:   3.20
+2025-07-29 18:19:52   metrics/test.mAP:           62.17
+2025-07-29 18:19:52   metrics/test.mAR:           69.00
+2025-07-29 18:20:00 Epoch 181/200 (lr=1e-05), train loss 0.00247
+2025-07-29 18:20:07 Epoch 182/200 (lr=1e-05), train loss 0.00229
+2025-07-29 18:20:15 Epoch 183/200 (lr=1e-05), train loss 0.00212
+2025-07-29 18:20:22 Epoch 184/200 (lr=1e-05), train loss 0.00212
+2025-07-29 18:20:30 Epoch 185/200 (lr=1e-05), train loss 0.00225
+2025-07-29 18:20:38 Epoch 186/200 (lr=1e-05), train loss 0.00231
+2025-07-29 18:20:46 Epoch 187/200 (lr=1e-05), train loss 0.00276
+2025-07-29 18:20:53 Epoch 188/200 (lr=1e-05), train loss 0.00238
+2025-07-29 18:21:01 Epoch 189/200 (lr=1e-05), train loss 0.00215
+2025-07-29 18:21:09 Training for epoch 190 done, starting evaluation
+2025-07-29 18:21:09 Epoch 190/200 (lr=1e-05), train loss 0.00234, valid loss 0.00568
+2025-07-29 18:21:09 Model performance:
+2025-07-29 18:21:09   metrics/test.rmse:          57.98
+2025-07-29 18:21:09   metrics/test.rmse_pcutoff:   3.23
+2025-07-29 18:21:09   metrics/test.mAP:           62.17
+2025-07-29 18:21:09   metrics/test.mAR:           69.00
+2025-07-29 18:21:17 Epoch 191/200 (lr=1e-05), train loss 0.00302
+2025-07-29 18:21:25 Epoch 192/200 (lr=1e-05), train loss 0.00227
+2025-07-29 18:21:32 Epoch 193/200 (lr=1e-05), train loss 0.00229
+2025-07-29 18:21:40 Epoch 194/200 (lr=1e-05), train loss 0.00234
+2025-07-29 18:21:48 Epoch 195/200 (lr=1e-05), train loss 0.00228
+2025-07-29 18:21:55 Epoch 196/200 (lr=1e-05), train loss 0.00240
+2025-07-29 18:22:03 Epoch 197/200 (lr=1e-05), train loss 0.00225
+2025-07-29 18:22:11 Epoch 198/200 (lr=1e-05), train loss 0.00233
+2025-07-29 18:22:18 Epoch 199/200 (lr=1e-05), train loss 0.00271
+2025-07-29 18:22:26 Training for epoch 200 done, starting evaluation
+2025-07-29 18:22:27 Epoch 200/200 (lr=1e-05), train loss 0.00289, valid loss 0.00565
+2025-07-29 18:22:27 Model performance:
+2025-07-29 18:22:27   metrics/test.rmse:          66.14
+2025-07-29 18:22:27   metrics/test.rmse_pcutoff:   3.31
+2025-07-29 18:22:27   metrics/test.mAP:           63.68
+2025-07-29 18:22:27   metrics/test.mAR:           72.00
