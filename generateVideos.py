@@ -25,7 +25,7 @@ def build_filter_chain(x, y, w, h, roi_type):
     filter_complex = (
         f"[0]crop={w}:{h}:{x}:{y},format=rgba,"
         f"geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)':a='if({full_expr}\\,255\\,0)'[masked];"
-        f"color=black@1.0:s={w}x{h}:d=10[bg];"
+        f"color=black@1.0:s={w}x{h}[bg];"
         f"[bg][masked]overlay=shortest=1:format=rgb"
     )
 
