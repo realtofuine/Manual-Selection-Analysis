@@ -7,8 +7,7 @@ identity:
 
 
 # Project path (change when moving around)
-project_path: 
-  /Users/rishi/Downloads/Manual-Selection-Analysis/singlelarvae_imaging-rishi-2025-06-13
+project_path: ./singlelarvae_imaging-rishi-2025-06-13
 
 
 # Default DeepLabCut engine to use for shuffle creation (either pytorch or tensorflow)
