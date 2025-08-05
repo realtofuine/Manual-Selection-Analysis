@@ -49,6 +49,7 @@ def run_ffmpeg_crop(video_path, crop, roi_type, out_path, threads=4):
         cmd += ["-vf", vf]
 
     cmd += [
+        "-r", "30",                        # enforce constant framerate
         "-movflags", "+faststart",        # optimize for playback
         "-preset", "ultrafast",            # speed up encoding
         "-c:v", "libx264",                # ensure you're using x264
