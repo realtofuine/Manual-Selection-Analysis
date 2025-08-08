@@ -21,22 +21,22 @@
 name: manualenv
 channels:
   - conda-forge
+  - defaults
 dependencies:
-  - pip
   - python=3.10
+  - pip
   - ipython
   - jupyter
   - nb_conda
   - notebook<7.0.0
   - ffmpeg
-  - x264
   - pytables==3.8.0
   - pip:
-      - httpx
-      - numpy
-      - opencv-python
-      - pandas
-      - read-roi
-      - torch
-      - torchvision
-      - deeplabcut[gui,modelzoo,wandb]==3.0.0rc8
+    - torch
+    - torchvision
+    - deeplabcut[gui,modelzoo,wandb]==3.0.0rc9
+    - httpx
+    - numpy
+    - opencv-python
+    - pandas
+    - read-roi
