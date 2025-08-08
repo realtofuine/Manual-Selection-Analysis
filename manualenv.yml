@@ -21,7 +21,6 @@
 name: manualenv
 channels:
   - conda-forge
-  - default
 dependencies:
   - pip
   - python=3.10
