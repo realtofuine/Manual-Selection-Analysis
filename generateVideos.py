@@ -3,6 +3,7 @@ import os
 import subprocess
 from concurrent.futures import ThreadPoolExecutor
 
+from imageio_ffmpeg import get_ffmpeg_exe
 from read_roi import read_roi_zip
 
 
@@ -37,8 +38,10 @@ def run_ffmpeg_crop(video_path, crop, roi_type, out_path, threads=4):
     h = (h // 2) * 2
     vf, is_complex = build_filter_chain(x, y, w, h, roi_type)
 
+    ffmpeg_path = get_ffmpeg_exe()
+
     cmd = [
-        "ffmpeg",
+        ffmpeg_path,
         "-threads", str(threads),
         "-i", video_path,
     ]
