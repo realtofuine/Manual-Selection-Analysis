@@ -30,6 +30,7 @@ dependencies:
   - nb_conda
   - notebook<7.0.0
   - ffmpeg
+  - x264
   - pytables==3.8.0
   - pip:
       - httpx
